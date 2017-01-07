@@ -1,5 +1,5 @@
 # steam_api
-![alt tag](http://downloadicons.net/sites/default/files/steam-icon-16008.png)
+![alt tag](http://2.bp.blogspot.com/_pCYGtGEULgk/S9YnaepswpI/AAAAAAAAAFM/l5Vly2qgeEc/s1600/2000px-Steam_logo.svg.png)
 ## Author
 Michael Pare
 
