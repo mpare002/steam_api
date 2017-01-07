@@ -1,9 +1,9 @@
 # steam_api
-
+![alt tag](http://downloadicons.net/sites/default/files/steam-icon-16008.png)
 ## Author
 Michael Pare
 
-SteamAPI ![alt tag](http://downloadicons.net/sites/default/files/steam-icon-16008.png)
+SteamAPI 
 ========
 An object-oriented Python 3.5+ library for accessing the Steam Web API.
 
