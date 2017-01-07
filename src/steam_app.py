@@ -10,12 +10,40 @@ import random
 
 
 class new_game:
-    def __init__(self, appid, gname, icon, playtime=None):
+    def __init__(self, appid, gname, icon, key, playtime=None):
         self.id = appid
+        self.key = key
         self.name = gname
         self.playtime_forever = playtime
         self.icon_url = 'http://media.steampowered.com/steamcommunity/public/images/apps/{0}/{1}.jpg'.format(str(self.id), icon)
         self.game_banner = 'http://cdn.edgecast.steamstatic.com/steam/apps/{0}/header.jpg'.format(str(self.id))
+
+    def get_stats(self):
+        self.achievements = []
+        achieve_url = 'http://api.steampowered.com/ISteamUserStats/GetSchemaForGame/v2/?key={0}&appid={1}'.format(self.key, self.id)
+        json_obj_stats = requests.get(achieve_url)
+        stat_dict = json_obj_stats.json()
+        #ADD CHECK FOR ARCHIEVEMENTS
+        if 'availableGameStats' in stat_dict['game'].keys():
+            self.has_achievements = True
+            for achieve in stat_dict['game']['availableGameStats']['achievements']:
+                if achieve['hidden'] == 1: #achievement is hidden
+                    new_achievement = achievement(achieve['name'], achieve['displayName'], achieve['icon'], "Description Hidden")
+                    self.achievements.append(new_achievement)
+                elif achieve['hidden'] == 0: #achievement is not hidden
+                    new_achievement2 = achievement(achieve['name'], achieve['displayName'], achieve['icon'], achieve["description"])
+                    self.achievements.append(new_achievement2)
+        else:
+            self.has_achievements = False
+
+
+class achievement:
+    def __init__(self, a_name, dname, icon_url, descrip):
+        self.name = a_name
+        self.display_name = dname
+        self.icon = icon_url
+        self.description = descrip
+
 
 class new_friend:
     def __init__(self, friend_id, date, key):
@@ -86,7 +114,7 @@ class steam_usr:
         self.game_count = games_dict['response']['game_count']
         self.games = []
         for game in games_dict['response']['games']:
-            newgame = new_game(game['appid'], game['name'], game['img_icon_url'], game['playtime_forever'])
+            newgame = new_game(game['appid'], game['name'], game['img_icon_url'], self.api_key, game['playtime_forever'])
             self.games.append(newgame)
         #recently played
         
@@ -108,7 +136,3 @@ class steam_connect:
     def create_game(self, game_id):
         return game(self, game_id, self.api_key)
 
-
-        
-if __name__ == '__main__':
-    main()
