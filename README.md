@@ -12,5 +12,5 @@ Using the requests and json python module I have created an easy way to access i
 [Web API](http://steamcommunity.com/dev) about steam games as well as steam users to do so with as you please.
 
 
- 
-
+ ## Current Objective
+ -Find the top five rarest achievements completed for the specified user. 
