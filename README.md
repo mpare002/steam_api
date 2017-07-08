@@ -13,12 +13,11 @@ Using the requests and json python module I have created an easy way to access i
 
 # Example
 
-'''
+```python
 import steam_app
 import random 
 
 def main():
-    print('{0:=^50s}'.format('=')) #---------------------------------------------------------------------------
     steamid = 0
     steam_obj = steam_app.steam_connect('xxxxxxxxxxxxxxxxxxxxxxxxxx') #ENTER YOUR API CODE HERE
     while True:
@@ -51,13 +50,13 @@ def main():
         .format(current_user.game_count, current_user.games[randnum2].name, current_user.games[randnum2].playtime_forever))
 
 
-    #t2 = time.time() - t
-    #print(t2)
-    print('{0:=^50s}'.format('=')) #---------------------------------------------------------------------------
+    
+    
 
-if __name__ == '__main__':
-    main()
 
-'''
+main()
+    
+```
+
 
 
